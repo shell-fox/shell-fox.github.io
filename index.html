@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seanna — Ashell Fox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12081f;
+    --bg-2: #180a26;
+    --pink: #ff3ea0;
+    --violet: #8b3bff;
+    --blue: #3d6bff;
+    --gold: #f2c14e;
+    --green: #7fc93f;
+    --ink: #f7f2ff;
+    --muted: #bfa8e8;
+    --card: rgba(255,255,255,0.05);
+    --card-line: rgba(255,255,255,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Manrope', sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Unbounded', sans-serif;
+    margin:0;
+  }
+  a{color:inherit;}
+  p{margin:0;}
+  ::selection{background:var(--pink); color:#12081f;}
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  /* ---------------- Background blobs ---------------- */
+  .bg-blobs{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(90px);
+    opacity:0.55;
+    mix-blend-mode:screen;
+  }
+  .blob.b1{width:620px; height:620px; background:var(--pink); top:-180px; left:-120px; animation:float1 22s ease-in-out infinite;}
+  .blob.b2{width:560px; height:560px; background:var(--blue); top:20%; right:-160px; animation:float2 26s ease-in-out infinite;}
+  .blob.b3{width:480px; height:480px; background:var(--violet); bottom:-160px; left:18%; animation:float3 20s ease-in-out infinite;}
+  .blob.b4{width:340px; height:340px; background:var(--gold); bottom:8%; right:10%; opacity:0.28; animation:float1 30s ease-in-out infinite reverse;}
+  @keyframes float1{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(60px,80px) scale(1.15);}
+  }
+  @keyframes float2{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(-70px,50px) scale(0.9);}
+  }
+  @keyframes float3{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(40px,-60px) scale(1.1);}
+  }
+  .grain{
+    position:fixed; inset:0; z-index:1; pointer-events:none;
+    opacity:0.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap{position:relative; z-index:2; max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* ---------------- Nav ---------------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    padding:20px 0;
+    transition:background .3s, backdrop-filter .3s, padding .3s;
+  }
+  header.scrolled{
+    background:rgba(18,8,31,0.75);
+    backdrop-filter:blur(14px);
+    padding:14px 0;
+    border-bottom:1px solid var(--card-line);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:0 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .wordmark-sm{
+    font-family:'Unbounded', sans-serif;
+    font-weight:900;
+    font-size:20px;
+    letter-spacing:-0.02em;
+  }
+  nav.links{display:flex; gap:26px; font-size:14px; font-weight:600;}
+  nav.links a{text-decoration:none; color:var(--muted); transition:color .2s;}
+  nav.links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--ink); color:#12081f;
+    padding:9px 18px; border-radius:999px;
+    font-size:13.5px; font-weight:700; text-decoration:none;
+    white-space:nowrap;
+  }
+  @media(max-width:720px){ nav.links{display:none;} }
+
+  /* ---------------- Hero ---------------- */
+  .hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:120px 20px 60px;
+  }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:14px; color:var(--muted); font-weight:600;
+    margin-bottom:26px;
+  }
+  .pine{
+    display:inline-block;
+    font-size:20px;
+    animation:sway 3.4s ease-in-out infinite;
+    transform-origin:bottom center;
+  }
+  @keyframes sway{
+    0%,100%{transform:rotate(-8deg);}
+    50%{transform:rotate(8deg);}
+  }
+  .wordmark{
+    font-size:clamp(64px, 15vw, 150px);
+    font-weight:900;
+    line-height:0.9;
+    letter-spacing:-0.03em;
+    background:linear-gradient(100deg, var(--pink), var(--violet) 35%, var(--blue) 60%, var(--gold) 90%);
+    background-size:300% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:gradientShift 8s ease-in-out infinite;
+  }
+  @keyframes gradientShift{
+    0%,100%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+  }
+  .hero-sub{
+    margin-top:22px;
+    font-size:clamp(16px,2.4vw,20px);
+    color:var(--muted);
+    max-width:46ch;
+    font-weight:500;
+  }
+  .hero-sub strong{color:var(--ink);}
+  .hero-ctas{
+    margin-top:38px;
+    display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 26px;
+    border-radius:999px;
+    font-weight:700; font-size:14.5px;
+    text-decoration:none;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-solid{
+    background:linear-gradient(100deg, var(--pink), var(--violet));
+    color:#fff;
+    box-shadow:0 8px 30px -8px rgba(139,59,255,0.6);
+  }
+  .btn-outline{
+    border:1.5px solid var(--card-line);
+    color:var(--ink);
+    background:rgba(255,255,255,0.04);
+  }
+  .btn-outline:hover{border-color:var(--gold);}
+
+  /* ---------------- Marquee ---------------- */
+  .marquee-wrap{
+    border-top:1px solid var(--card-line);
+    border-bottom:1px solid var(--card-line);
+    overflow:hidden;
+    padding:18px 0;
+    background:rgba(255,255,255,0.02);
+  }
+  .marquee-track{
+    display:flex;
+    width:max-content;
+    gap:34px;
+    animation:scroll 32s linear infinite;
+  }
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .marquee-track span{
+    font-family:'Unbounded', sans-serif;
+    font-weight:700;
+    font-size:20px;
+    color:var(--muted);
+    display:flex; align-items:center; gap:34px;
+    white-space:nowrap;
+  }
+  .marquee-track span em{
+    font-style:normal;
+    color:var(--gold);
+  }
+
+  /* ---------------- Sections ---------------- */
+  section.block{
+    padding:64px 0;
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  section.block.in-view{opacity:1; transform:translateY(0);}
+
+  .tag{
+    display:inline-block;
+    font-size:13px; font-weight:700;
+    color:var(--gold);
+    background:rgba(242,193,78,0.12);
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  .block h2{
+    font-size:clamp(30px,5vw,46px);
+    font-weight:700;
+    max-width:16ch;
+    margin-bottom:20px;
+  }
+  .block .lede{
+    max-width:60ch;
+    color:var(--muted);
+    font-size:16.5px;
+    line-height:1.6;
+  }
+
+  /* About */
+  .about-grid{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:44px;
+    align-items:start;
+    margin-top:36px;
+  }
+  @media(max-width:680px){ .about-grid{grid-template-columns:1fr;} }
+  .headshot-wrap{
+    position:relative;
+    width:220px; height:220px;
+    border-radius:28px;
+    padding:4px;
+    background:linear-gradient(140deg, var(--pink), var(--blue), var(--gold));
+    background-size:220% 220%;
+    animation:gradientShift 10s ease-in-out infinite;
+  }
+  .headshot-wrap img{
+    width:100%; height:100%;
+    object-fit:cover;
+    border-radius:24px;
+    display:block;
+  }
+  .bio p{color:#ded4f5; font-size:16px; line-height:1.7; margin-bottom:16px; max-width:60ch;}
+  .skill-row{display:flex; flex-wrap:wrap; gap:9px; margin-top:22px;}
+  .skill{
+    font-size:13px; font-weight:600;
+    padding:7px 14px; border-radius:999px;
+    border:1px solid var(--card-line);
+    background:var(--card);
+    color:var(--ink);
+  }
+
+  /* Music */
+  .spotify-frame{
+    border-radius:18px;
+    padding:3px;
+    background:linear-gradient(120deg, var(--green), var(--blue), var(--violet));
+    margin:32px 0 30px;
+  }
+  .spotify-frame iframe{
+    border-radius:15px;
+    display:block;
+  }
+  .link-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:14px;
+  }
+  .link-grid .link-card{max-width:340px;}
+  .link-card{
+    display:block;
+    padding:20px;
+    border-radius:16px;
+    background:var(--card);
+    border:1px solid var(--card-line);
+    text-decoration:none;
+    transition:transform .2s, border-color .2s, background .2s;
+  }
+  .link-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--pink);
+    background:rgba(255,62,160,0.08);
+  }
+  .lc-dot{
+    width:10px; height:10px; border-radius:50%;
+    margin-bottom:14px;
+  }
+  .link-card .lc-title{font-weight:700; font-size:16px; margin-bottom:4px;}
+  .link-card .lc-sub{font-size:13px; color:var(--muted);}
+
+  /* Recognition */
+  .rec-grid{display:flex; flex-direction:column; gap:14px;}
+  .rec-card{
+    padding:22px 24px;
+    border-radius:16px;
+    background:var(--card);
+    border:1px solid var(--card-line);
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:18px;
+  }
+  @media(max-width:560px){ .rec-card{grid-template-columns:1fr;} }
+  .rec-year{font-family:'Unbounded', sans-serif; font-weight:700; font-size:14px; color:var(--gold);}
+  .rec-title{font-weight:700; font-size:16px; margin-bottom:6px;}
+  .rec-desc{font-size:14.5px; color:var(--muted); line-height:1.55;}
+  .rec-desc a{color:var(--ink); border-bottom:1px solid var(--pink); text-decoration:none;}
+
+  /* Contact */
+  .contact-panel{
+    margin-top:36px;
+    border-radius:24px;
+    padding:44px;
+    background:linear-gradient(150deg, rgba(255,62,160,0.14), rgba(61,107,255,0.12));
+    border:1px solid var(--card-line);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  @media(max-width:760px){ .contact-panel{grid-template-columns:1fr; padding:28px;} }
+  .field{margin-bottom:16px;}
+  .field label{
+    display:block; font-size:13px; font-weight:700; color:var(--muted);
+    margin-bottom:7px;
+  }
+  .field input, .field textarea{
+    width:100%;
+    background:rgba(0,0,0,0.25);
+    border:1px solid var(--card-line);
+    border-radius:10px;
+    padding:12px 14px;
+    color:var(--ink);
+    font-family:'Manrope', sans-serif;
+    font-size:14.5px;
+    resize:vertical;
+  }
+  .field input:focus, .field textarea:focus{border-color:var(--pink); outline:none;}
+  .contact-direct{display:flex; flex-direction:column; gap:16px; justify-content:center;}
+  .contact-direct .cd-label{font-size:13px; color:var(--muted); font-weight:700; margin-bottom:6px;}
+  .contact-direct .cd-value{font-size:19px; font-weight:700;}
+  .contact-direct .cd-value a{text-decoration:none; border-bottom:2px solid var(--gold);}
+  .social-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:6px;}
+  .social-chip{
+    padding:9px 16px;
+    border-radius:999px;
+    border:1px solid var(--card-line);
+    font-size:13px; font-weight:600;
+    text-decoration:none;
+    transition:border-color .2s, transform .2s;
+  }
+  .social-chip:hover{border-color:var(--pink); transform:translateY(-2px);}
+
+  footer{
+    padding:50px 0 60px;
+    border-top:1px solid var(--card-line);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  footer .foot-note{font-size:13px; color:var(--muted);}
+</style>
+</head>
+<body>
+
+<div class="bg-blobs">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+</div>
+<div class="grain"></div>
+
+<header id="siteHeader">
+  <div class="nav-inner">
+    <div class="wordmark-sm">SEANNA</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#music">Music</a>
+      <a href="#film">Film</a>
+      <a href="#recognition">Recognition</a>
+      <a href="#socials">Socials</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Get in touch</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="hero-eyebrow"><span class="pine">🍍</span> Denver, Colorado</div>
+    <h1 class="wordmark">SEANNA</h1>
+    <p class="hero-sub">The music &amp; production world of <strong>Ashell Fox</strong> — producer, audio engineer, and multi-instrumentalist making records, mixing film, and teaching sound.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-solid" href="#music">Listen now</a>
+      <a class="btn btn-outline" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marqueeTrack">
+      <span>PIANO <em>🍍</em> DRUMS <em>🍍</em> PRODUCTION <em>🍍</em> MIXING <em>🍍</em> MASTERING <em>🍍</em> FILM SOUND <em>🍍</em> SOUND DESIGN <em>🍍</em> TEACHING <em>🍍</em></span>
+      <span>PIANO <em>🍍</em> DRUMS <em>🍍</em> PRODUCTION <em>🍍</em> MIXING <em>🍍</em> MASTERING <em>🍍</em> FILM SOUND <em>🍍</em> SOUND DESIGN <em>🍍</em> TEACHING <em>🍍</em></span>
+    </div>
+  </div>
+
+  <section class="block" id="about">
+    <div class="tag">About</div>
+    <h2>Eight-plus years across film &amp; music.</h2>
+    <div class="about-grid">
+      <div class="headshot-wrap">
+        <img src="images/ashell-studio.jpg" alt="Ashell Fox in a recording studio">
+      </div>
+      <div class="bio">
+        <p>Ashell is a highly skilled audio engineer, music producer, and multi-instrumentalist. Originally from La Paz, Baja California Sur, Mexico, he moved to Denver to advance his expertise in media arts.</p>
+        <p>He's now an assistant engineer at Colorado Sound Studios and founder of Fox Audio, LLC, in Denver. At CU Denver, he co-designed, co-developed, and co-taught <strong>MUSC 4820 — Digital Music Techniques</strong>, a course on modular synthesis and sound design, and continues teaching audio production at CU Denver, Northern Virginia Community College, and Pickering Creative Artists Academy.</p>
+        <div class="skill-row">
+          <span class="skill">Piano</span>
+          <span class="skill">Drums</span>
+          <span class="skill">Production</span>
+          <span class="skill">Mixing &amp; Mastering</span>
+          <span class="skill">Sound Design</span>
+          <span class="skill">Film Mixing</span>
+          <span class="skill">Live Sound</span>
+        </div>
+        <div class="skill-row" style="margin-top:10px;">
+          <span class="skill" style="opacity:0.8;">Notable credits: SanbelBB</span>
+          <span class="skill" style="opacity:0.8;">Drew The Director</span>
+          <span class="skill" style="opacity:0.8;">Phoebe Chan</span>
+          <span class="skill" style="opacity:0.8;">Nathaniel Rateliff (World Cafe)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="music">
+    <div class="tag">Music</div>
+    <h2>Listen to Seanna.</h2>
+    <p class="lede">Original songwriting and production, out now on every platform.</p>
+
+    <div class="spotify-frame">
+      <iframe src="https://open.spotify.com/embed/artist/7roD4f7EePWSubrCn01DgY?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+
+    <div class="link-grid">
+      <a class="link-card" href="https://seanna.bandcamp.com/album/be-mine" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--green);"></div>
+        <div class="lc-title">Be Mine</div>
+        <div class="lc-sub">Album on Bandcamp</div>
+      </a>
+      <a class="link-card" href="http://music.apple.com/us/artist/seanna/1214174505" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--pink);"></div>
+        <div class="lc-title">Apple Music</div>
+        <div class="lc-sub">Full catalog</div>
+      </a>
+      <a class="link-card" href="https://soundcloud.com/seannaofficial" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--blue);"></div>
+        <div class="lc-title">SoundCloud</div>
+        <div class="lc-sub">@seannaofficial</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="block" id="film">
+    <div class="tag">Film</div>
+    <h2>Sound for the screen.</h2>
+    <div class="link-grid">
+      <a class="link-card" href="https://filmfreeway.com/28KegsLater" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--pink);"></div>
+        <div class="lc-title">28 Kegs Later</div>
+        <div class="lc-sub">FilmFreeway project page</div>
+      </a>
+      <a class="link-card" href="https://www.youtube.com/watch?v=tqUkXOp8pVA" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--violet);"></div>
+        <div class="lc-title">Party Demon</div>
+        <div class="lc-sub">Horror comedy short film</div>
+      </a>
+      <a class="link-card" href="https://www.imdb.com/name/nm7685703/" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--gold);"></div>
+        <div class="lc-title">IMDb</div>
+        <div class="lc-sub">Filmography &amp; credits</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="block" id="recognition">
+    <div class="tag">Recognition</div>
+    <h2>Awards, Research &amp; Speaking.</h2>
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="rec-year">2022</div>
+        <div>
+          <div class="rec-title">John Eargle Award</div>
+          <div class="rec-desc">Awarded by the Audio Engineering Society (AES). <a href="https://aes.org/news/audio-engineering-society-educational-foundation-announces-awardees-for-the-2022-2023-academic-year/" target="_blank" rel="noopener">Read the announcement →</a></div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-year">2021</div>
+        <div>
+          <div class="rec-title">AES Educational Foundation Scholarship</div>
+          <div class="rec-desc">Awarded by the Audio Engineering Society (AES).</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-year">2021</div>
+        <div>
+          <div class="rec-title">Teaching Modular Synth &amp; Sound Design During Covid 19</div>
+          <div class="rec-desc">Published in the proceedings of the 151st AES Convention — on maximizing learning outcomes through open-source software and student-centered pedagogy. <a href="https://www.researchgate.net/publication/360013278_Teaching_Modular_Synth_and_Sound_Design_Online_During_COVID-19_Maximizing_Learning_Outcomes_Through_Open-_Source_Software_and_Student-Centered_Pedagogy" target="_blank" rel="noopener">Read on ResearchGate →</a></div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-year">2020–21</div>
+        <div>
+          <div class="rec-title">Invited talks &amp; guest lectures</div>
+          <div class="rec-desc">Speaker at the 151st AES Convention ("DEI in Audio Engineering in Higher Education") and Audio Engineering Month 2021, plus guest lectures and symposium talks at CU Denver. <a href="https://audioengineeringmonth2021.sched.com/speaker/ashell_fox.22vgh1i3" target="_blank" rel="noopener">View speaker profile →</a></div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-year">Teaching</div>
+        <div>
+          <div class="rec-title">Instructor across three institutions</div>
+          <div class="rec-desc">CU Denver, Northern Virginia Community College, and Pickering Creative Artists Academy — teaching audio production, live sound, and private piano &amp; drums. <a href="https://pickeringacademy.com/our-instructors/" target="_blank" rel="noopener">View profile →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="socials">
+    <div class="tag">Socials</div>
+    <h2>Follow along.</h2>
+    <div class="link-grid">
+      <a class="link-card" href="https://www.youtube.com/@Seanna/videos" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--blue);"></div>
+        <div class="lc-title">YouTube</div>
+        <div class="lc-sub">Videos &amp; sessions</div>
+      </a>
+      <a class="link-card" href="https://www.tiktok.com/@seannamusic" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--violet);"></div>
+        <div class="lc-title">TikTok</div>
+        <div class="lc-sub">@seannamusic</div>
+      </a>
+      <a class="link-card" href="https://www.linkedin.com/in/ashell-fox/" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:#fff;"></div>
+        <div class="lc-title">LinkedIn</div>
+        <div class="lc-sub">Professional profile</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="tag">Contact</div>
+    <h2>Let's make something.</h2>
+    <p class="lede">Booking a session, scoring a project, or just want to say hey — reach out.</p>
+
+    <div class="contact-panel">
+      <form id="contactForm">
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" type="text" required placeholder="Your name">
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" type="email" required placeholder="you@email.com">
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" rows="4" required placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-solid" style="border:none; cursor:pointer; width:100%; justify-content:center;">Send message</button>
+      </form>
+
+      <div class="contact-direct">
+        <div>
+          <div class="cd-label">Email</div>
+          <div class="cd-value"><a href="mailto:hello@seannamusic.com">hello@seannamusic.com</a></div>
+        </div>
+        <div>
+          <div class="cd-label">Elsewhere</div>
+          <div class="social-row">
+            <a class="social-chip" href="https://open.spotify.com/artist/7roD4f7EePWSubrCn01DgY" target="_blank" rel="noopener">Spotify</a>
+            <a class="social-chip" href="https://www.youtube.com/@Seanna/videos" target="_blank" rel="noopener">YouTube</a>
+            <a class="social-chip" href="https://www.tiktok.com/@seannamusic" target="_blank" rel="noopener">TikTok</a>
+            <a class="social-chip" href="https://www.linkedin.com/in/ashell-fox/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wordmark-sm">SEANNA</div>
+    <div class="foot-note">Ashell Fox — Denver, Colorado</div>
+  </footer>
+
+</div>
+
+<script>
+  // Nav background on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll-reveal sections
+  const blocks = document.querySelectorAll('section.block');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.15});
+  blocks.forEach(b => io.observe(b));
+
+  // Contact form -> mailto
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cf-name').value;
+    const email = document.getElementById('cf-email').value;
+    const message = document.getElementById('cf-message').value;
+    const subject = encodeURIComponent(`Inquiry from ${name}`);
+    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+    window.location.href = `mailto:hello@seannamusic.com?subject=${subject}&body=${body}`;
+  });
+</script>
+
+</body>
+</html>
