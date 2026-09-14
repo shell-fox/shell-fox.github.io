@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seanna — Ashell Fox</title>
+<title>Ashell Fox — Audio Engineer, Producer &amp; Sound Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -123,20 +123,10 @@
     font-size:14px; color:var(--muted); font-weight:600;
     margin-bottom:26px;
   }
-  .pine{
-    display:inline-block;
-    font-size:20px;
-    animation:sway 3.4s ease-in-out infinite;
-    transform-origin:bottom center;
-  }
-  @keyframes sway{
-    0%,100%{transform:rotate(-8deg);}
-    50%{transform:rotate(8deg);}
-  }
   .wordmark{
-    font-size:clamp(64px, 15vw, 150px);
+    font-size:clamp(48px, 11.5vw, 118px);
     font-weight:900;
-    line-height:0.9;
+    line-height:0.98;
     letter-spacing:-0.03em;
     background:linear-gradient(100deg, var(--pink), var(--violet) 35%, var(--blue) 60%, var(--gold) 90%);
     background-size:300% 100%;
@@ -333,6 +323,115 @@
   .rec-desc{font-size:14.5px; color:var(--muted); line-height:1.55;}
   .rec-desc a{color:var(--ink); border-bottom:1px solid var(--pink); text-decoration:none;}
 
+  /* Lead Reel / audio players */
+  .reel-group{margin-top:38px;}
+  .reel-group:first-child{margin-top:36px;}
+  .reel-group-head h3{
+    font-size:14px; font-weight:700; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:16px;
+  }
+  .reel-pair-card{
+    padding:24px;
+    border-radius:18px;
+    background:var(--card);
+    border:1px solid var(--card-line);
+    margin-bottom:16px;
+  }
+  .reel-pair-head h4{font-size:19px; font-weight:700; margin-bottom:6px;}
+  .reel-pair-head p{color:var(--muted); font-size:14px; margin-bottom:18px;}
+  .reel-pair-players{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media(max-width:640px){ .reel-pair-players{grid-template-columns:1fr;} }
+  .reel-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px;}
+  .oneshot-card h4{font-size:15.5px; font-weight:700; margin-bottom:14px;}
+
+  .audio-player{
+    display:flex; align-items:center; gap:12px;
+    padding:11px 14px;
+    border-radius:14px;
+    background:rgba(0,0,0,0.22);
+    border:1px solid var(--card-line);
+  }
+  .audio-player .ap-label{
+    font-size:11.5px; font-weight:700; color:var(--muted);
+    text-transform:uppercase; letter-spacing:0.05em; min-width:44px;
+  }
+  .ap-btn{
+    flex:0 0 auto;
+    width:36px; height:36px; border-radius:50%;
+    border:none; cursor:pointer;
+    background:linear-gradient(120deg, var(--pink), var(--violet));
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .15s;
+  }
+  .ap-btn:hover{transform:scale(1.07);}
+  .ap-btn .ico-play{
+    width:0; height:0;
+    border-top:6px solid transparent; border-bottom:6px solid transparent;
+    border-left:10px solid #fff; margin-left:2px;
+  }
+  .ap-btn .ico-pause{
+    display:none; width:8px; height:11px;
+    border-left:3px solid #fff; border-right:3px solid #fff;
+  }
+  .ap-btn.is-playing .ico-play{display:none;}
+  .ap-btn.is-playing .ico-pause{display:block;}
+  .ap-main{flex:1; min-width:0;}
+  .ap-track{
+    position:relative; height:5px; border-radius:999px;
+    background:rgba(255,255,255,0.12); cursor:pointer;
+  }
+  .ap-fill{
+    position:absolute; left:0; top:0; height:100%; width:0%;
+    border-radius:999px;
+    background:linear-gradient(90deg, var(--pink), var(--violet));
+  }
+  .ap-time{margin-top:6px; font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums;}
+  .ap-volume{
+    display:flex; align-items:center; gap:7px;
+    flex:0 0 auto;
+  }
+  .ap-vol-icon{font-size:13px; opacity:0.75; width:15px; text-align:center;}
+  .ap-vol-slider{
+    width:70px; accent-color:var(--pink); cursor:pointer;
+  }
+  @media(max-width:480px){
+    .audio-player{flex-wrap:wrap; row-gap:10px;}
+    .ap-volume{flex:1 0 100%; justify-content:flex-end;}
+  }
+
+  /* Credits */
+  .credit-block{margin-bottom:32px;}
+  .credit-block:last-child{margin-bottom:0;}
+  .credit-block h3{font-size:16px; font-weight:700; margin-bottom:4px;}
+  .credit-block .credit-note{font-size:13.5px; color:var(--muted); margin-bottom:14px;}
+  .credit-list{display:flex; flex-direction:column; gap:10px;}
+  .credit-item{
+    display:grid;
+    grid-template-columns:64px 1fr auto;
+    align-items:center;
+    gap:14px;
+    padding:14px 16px;
+    border-radius:12px;
+    background:var(--card);
+    border:1px solid var(--card-line);
+  }
+  @media(max-width:600px){ .credit-item{grid-template-columns:1fr; gap:4px;} }
+  .credit-year{font-family:'Unbounded', sans-serif; font-weight:700; font-size:13px; color:var(--gold);}
+  .credit-title{font-weight:700; font-size:15px;}
+  .credit-role{font-size:13px; color:var(--muted); margin-top:2px;}
+  .credit-link{font-size:13px; font-weight:700; text-decoration:none; color:var(--ink); border-bottom:1px solid var(--pink); white-space:nowrap;}
+
+  /* Archive */
+  .archive-panel{
+    margin-top:30px;
+    padding:40px 36px;
+    border-radius:20px;
+    border:1px dashed var(--card-line);
+    background:rgba(255,255,255,0.03);
+    text-align:center;
+  }
+  .archive-panel p{color:var(--muted); max-width:52ch; margin:0 auto 20px; font-size:15.5px; line-height:1.6;}
+
   /* Contact */
   .contact-panel{
     margin-top:36px;
@@ -397,13 +496,14 @@
 
 <header id="siteHeader">
   <div class="nav-inner">
-    <div class="wordmark-sm">SEANNA</div>
+    <div class="wordmark-sm">ASHELL FOX</div>
     <nav class="links">
       <a href="#about">About</a>
-      <a href="#music">Music</a>
-      <a href="#film">Film</a>
       <a href="#recognition">Recognition</a>
-      <a href="#socials">Socials</a>
+      <a href="#reel">Lead Reel</a>
+      <a href="#credits">Credits</a>
+      <a href="#music">Music</a>
+      <a href="#contact">Contact</a>
     </nav>
     <a class="nav-cta" href="#contact">Get in touch</a>
   </div>
@@ -412,19 +512,19 @@
 <div class="wrap">
 
   <section class="hero">
-    <div class="hero-eyebrow"><span class="pine">🍍</span> Denver, Colorado</div>
-    <h1 class="wordmark">SEANNA</h1>
-    <p class="hero-sub">The music &amp; production world of <strong>Ashell Fox</strong> — producer, audio engineer, and multi-instrumentalist making records, mixing film, and teaching sound.</p>
+    <div class="hero-eyebrow">📍 Denver, Colorado</div>
+    <h1 class="wordmark">ASHELL FOX</h1>
+    <p class="hero-sub">Audio engineer, producer, and sound designer working across <strong>film, music, and live session</strong> — mixing, mastering, sound design, and post-production for independent films, artists, and studios.</p>
     <div class="hero-ctas">
-      <a class="btn btn-solid" href="#music">Listen now</a>
+      <a class="btn btn-solid" href="#reel">Hear the work</a>
       <a class="btn btn-outline" href="#contact">Get in touch</a>
     </div>
   </section>
 
   <div class="marquee-wrap">
     <div class="marquee-track" id="marqueeTrack">
-      <span>PIANO <em>🍍</em> DRUMS <em>🍍</em> PRODUCTION <em>🍍</em> MIXING <em>🍍</em> MASTERING <em>🍍</em> FILM SOUND <em>🍍</em> SOUND DESIGN <em>🍍</em> TEACHING <em>🍍</em></span>
-      <span>PIANO <em>🍍</em> DRUMS <em>🍍</em> PRODUCTION <em>🍍</em> MIXING <em>🍍</em> MASTERING <em>🍍</em> FILM SOUND <em>🍍</em> SOUND DESIGN <em>🍍</em> TEACHING <em>🍍</em></span>
+      <span>MIXING <em>•</em> MASTERING <em>•</em> SOUND DESIGN <em>•</em> FILM POST-PRODUCTION <em>•</em> DIALOGUE EDITING <em>•</em> PRODUCTION <em>•</em> PIANO <em>•</em> DRUMS <em>•</em> TEACHING <em>•</em></span>
+      <span>MIXING <em>•</em> MASTERING <em>•</em> SOUND DESIGN <em>•</em> FILM POST-PRODUCTION <em>•</em> DIALOGUE EDITING <em>•</em> PRODUCTION <em>•</em> PIANO <em>•</em> DRUMS <em>•</em> TEACHING <em>•</em></span>
     </div>
   </div>
 
@@ -454,56 +554,6 @@
           <span class="skill" style="opacity:0.8;">Nathaniel Rateliff (World Cafe)</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="block" id="music">
-    <div class="tag">Music</div>
-    <h2>Listen to Seanna.</h2>
-    <p class="lede">Original songwriting and production, out now on every platform.</p>
-
-    <div class="spotify-frame">
-      <iframe src="https://open.spotify.com/embed/artist/7roD4f7EePWSubrCn01DgY?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-    </div>
-
-    <div class="link-grid">
-      <a class="link-card" href="https://seanna.bandcamp.com/album/be-mine" target="_blank" rel="noopener">
-        <div class="lc-dot" style="background:var(--green);"></div>
-        <div class="lc-title">Be Mine</div>
-        <div class="lc-sub">Album on Bandcamp</div>
-      </a>
-      <a class="link-card" href="http://music.apple.com/us/artist/seanna/1214174505" target="_blank" rel="noopener">
-        <div class="lc-dot" style="background:var(--pink);"></div>
-        <div class="lc-title">Apple Music</div>
-        <div class="lc-sub">Full catalog</div>
-      </a>
-      <a class="link-card" href="https://soundcloud.com/seannaofficial" target="_blank" rel="noopener">
-        <div class="lc-dot" style="background:var(--blue);"></div>
-        <div class="lc-title">SoundCloud</div>
-        <div class="lc-sub">@seannaofficial</div>
-      </a>
-    </div>
-  </section>
-
-  <section class="block" id="film">
-    <div class="tag">Film</div>
-    <h2>Sound for the screen.</h2>
-    <div class="link-grid">
-      <a class="link-card" href="https://filmfreeway.com/28KegsLater" target="_blank" rel="noopener">
-        <div class="lc-dot" style="background:var(--pink);"></div>
-        <div class="lc-title">28 Kegs Later</div>
-        <div class="lc-sub">FilmFreeway project page</div>
-      </a>
-      <a class="link-card" href="https://www.youtube.com/watch?v=tqUkXOp8pVA" target="_blank" rel="noopener">
-        <div class="lc-dot" style="background:var(--violet);"></div>
-        <div class="lc-title">Party Demon</div>
-        <div class="lc-sub">Horror comedy short film</div>
-      </a>
-      <a class="link-card" href="https://www.imdb.com/name/nm7685703/" target="_blank" rel="noopener">
-        <div class="lc-dot" style="background:var(--gold);"></div>
-        <div class="lc-title">IMDb</div>
-        <div class="lc-sub">Filmography &amp; credits</div>
-      </a>
     </div>
   </section>
 
@@ -549,6 +599,343 @@
     </div>
   </section>
 
+  <section class="block" id="reel">
+    <div class="tag">Lead Reel</div>
+    <h2>Recent work, start to finish.</h2>
+    <p class="lede">A current sample of mixing, mastering, and sound design — before/after comparisons and finished one-shots from recent sessions. Press play on any track; playback fades in and out cleanly, and starting a new track fades out whatever's playing.</p>
+
+    <div class="reel-group">
+      <div class="reel-group-head"><h3>Mixing &amp; Mastering</h3></div>
+
+      <div class="reel-pair-card">
+        <div class="reel-pair-head">
+          <h4>Kid Again <span style="color:var(--muted); font-weight:500;">(Drew The Director Remix)</span></h4>
+          <p>Client rough mix vs. final master.</p>
+        </div>
+        <div class="reel-pair-players">
+          <div class="audio-player" data-player>
+            <span class="ap-label">Before</span>
+            <button class="ap-btn" type="button" aria-label="Play before mix">
+              <span class="ico ico-play"></span><span class="ico ico-pause"></span>
+            </button>
+            <div class="ap-main">
+              <div class="ap-track" data-track><div class="ap-fill" data-fill></div></div>
+              <div class="ap-time"><span data-current>0:00</span> / <span data-duration>0:00</span></div>
+            </div>
+            <div class="ap-volume">
+              <span class="ap-vol-icon" aria-hidden="true">🔊</span>
+              <input type="range" class="ap-vol-slider" data-volume min="0" max="100" value="60" aria-label="Volume">
+            </div>
+            <audio data-audio src="audio/kid-again-before.wav" preload="metadata"></audio>
+          </div>
+          <div class="audio-player" data-player>
+            <span class="ap-label">After</span>
+            <button class="ap-btn" type="button" aria-label="Play after mix">
+              <span class="ico ico-play"></span><span class="ico ico-pause"></span>
+            </button>
+            <div class="ap-main">
+              <div class="ap-track" data-track><div class="ap-fill" data-fill></div></div>
+              <div class="ap-time"><span data-current>0:00</span> / <span data-duration>0:00</span></div>
+            </div>
+            <div class="ap-volume">
+              <span class="ap-vol-icon" aria-hidden="true">🔊</span>
+              <input type="range" class="ap-vol-slider" data-volume min="0" max="100" value="60" aria-label="Volume">
+            </div>
+            <audio data-audio src="audio/kid-again-after.wav" preload="metadata"></audio>
+          </div>
+        </div>
+      </div>
+
+      <div class="reel-pair-card">
+        <div class="reel-pair-head">
+          <h4>Love Me Like My Mama <span style="color:var(--muted); font-weight:500;">(Drew The Director Remix)</span></h4>
+          <p>Demo mix vs. final master.</p>
+        </div>
+        <div class="reel-pair-players">
+          <div class="audio-player" data-player>
+            <span class="ap-label">Before</span>
+            <button class="ap-btn" type="button" aria-label="Play before mix">
+              <span class="ico ico-play"></span><span class="ico ico-pause"></span>
+            </button>
+            <div class="ap-main">
+              <div class="ap-track" data-track><div class="ap-fill" data-fill></div></div>
+              <div class="ap-time"><span data-current>0:00</span> / <span data-duration>0:00</span></div>
+            </div>
+            <div class="ap-volume">
+              <span class="ap-vol-icon" aria-hidden="true">🔊</span>
+              <input type="range" class="ap-vol-slider" data-volume min="0" max="100" value="60" aria-label="Volume">
+            </div>
+            <audio data-audio src="audio/love-me-like-my-mama-before.mp3" preload="metadata"></audio>
+          </div>
+          <div class="audio-player" data-player>
+            <span class="ap-label">After</span>
+            <button class="ap-btn" type="button" aria-label="Play after mix">
+              <span class="ico ico-play"></span><span class="ico ico-pause"></span>
+            </button>
+            <div class="ap-main">
+              <div class="ap-track" data-track><div class="ap-fill" data-fill></div></div>
+              <div class="ap-time"><span data-current>0:00</span> / <span data-duration>0:00</span></div>
+            </div>
+            <div class="ap-volume">
+              <span class="ap-vol-icon" aria-hidden="true">🔊</span>
+              <input type="range" class="ap-vol-slider" data-volume min="0" max="100" value="60" aria-label="Volume">
+            </div>
+            <audio data-audio src="audio/love-me-like-my-mama-after.wav" preload="metadata"></audio>
+          </div>
+        </div>
+      </div>
+
+      <div class="reel-pair-card">
+        <div class="reel-pair-head">
+          <h4>Amor Nocivo <span style="color:var(--muted); font-weight:500;">(SanbelBB)</span></h4>
+          <p>Final mix &amp; master.</p>
+        </div>
+        <div class="reel-pair-players" style="grid-template-columns:1fr;">
+          <div class="audio-player" data-player>
+            <button class="ap-btn" type="button" aria-label="Play track">
+              <span class="ico ico-play"></span><span class="ico ico-pause"></span>
+            </button>
+            <div class="ap-main">
+              <div class="ap-track" data-track><div class="ap-fill" data-fill></div></div>
+              <div class="ap-time"><span data-current>0:00</span> / <span data-duration>0:00</span></div>
+            </div>
+            <div class="ap-volume">
+              <span class="ap-vol-icon" aria-hidden="true">🔊</span>
+              <input type="range" class="ap-vol-slider" data-volume min="0" max="100" value="60" aria-label="Volume">
+            </div>
+            <audio data-audio src="audio/amor-nocivo.wav" preload="metadata"></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reel-group">
+      <div class="reel-group-head"><h3>Sound Design — Composer Companion</h3></div>
+      <p class="lede" style="margin-bottom:18px;">Four of 77 original sound effects designed for Drew The Director's Composer Companion suite.</p>
+      <div class="reel-grid">
+        <div class="reel-pair-card oneshot-card">
+          <h4>Decimate <span style="color:var(--muted); font-weight:500;">— Tonal Riser [D]</span></h4>
+          <div class="audio-player" data-player>
+            <button class="ap-btn" type="button" aria-label="Play track">
+              <span class="ico ico-play"></span><span class="ico ico-pause"></span>
+            </button>
+            <div class="ap-main">
+              <div class="ap-track" data-track><div class="ap-fill" data-fill></div></div>
+              <div class="ap-time"><span data-current>0:00</span> / <span data-duration>0:00</span></div>
+            </div>
+            <div class="ap-volume">
+              <span class="ap-vol-icon" aria-hidden="true">🔊</span>
+              <input type="range" class="ap-vol-slider" data-volume min="0" max="100" value="60" aria-label="Volume">
+            </div>
+            <audio data-audio src="audio/cc-decimate-tonal-riser.wav" preload="metadata"></audio>
+          </div>
+        </div>
+        <div class="reel-pair-card oneshot-card">
+          <h4>Deep End <span style="color:var(--muted); font-weight:500;">— Bass Drop [F]</span></h4>
+          <div class="audio-player" data-player>
+            <button class="ap-btn" type="button" aria-label="Play track">
+              <span class="ico ico-play"></span><span class="ico ico-pause"></span>
+            </button>
+            <div class="ap-main">
+              <div class="ap-track" data-track><div class="ap-fill" data-fill></div></div>
+              <div class="ap-time"><span data-current>0:00</span> / <span data-duration>0:00</span></div>
+            </div>
+            <div class="ap-volume">
+              <span class="ap-vol-icon" aria-hidden="true">🔊</span>
+              <input type="range" class="ap-vol-slider" data-volume min="0" max="100" value="60" aria-label="Volume">
+            </div>
+            <audio data-audio src="audio/cc-deep-end-bass-drop.wav" preload="metadata"></audio>
+          </div>
+        </div>
+        <div class="reel-pair-card oneshot-card">
+          <h4>Epic Metal Bend <span style="color:var(--muted); font-weight:500;">— Tonal Hit [Dm]</span></h4>
+          <div class="audio-player" data-player>
+            <button class="ap-btn" type="button" aria-label="Play track">
+              <span class="ico ico-play"></span><span class="ico ico-pause"></span>
+            </button>
+            <div class="ap-main">
+              <div class="ap-track" data-track><div class="ap-fill" data-fill></div></div>
+              <div class="ap-time"><span data-current>0:00</span> / <span data-duration>0:00</span></div>
+            </div>
+            <div class="ap-volume">
+              <span class="ap-vol-icon" aria-hidden="true">🔊</span>
+              <input type="range" class="ap-vol-slider" data-volume min="0" max="100" value="60" aria-label="Volume">
+            </div>
+            <audio data-audio src="audio/cc-epic-metal-bend-tonal-hit.wav" preload="metadata"></audio>
+          </div>
+        </div>
+        <div class="reel-pair-card oneshot-card">
+          <h4>Metallic Taste <span style="color:var(--muted); font-weight:500;">— Tonal Riser [Em]</span></h4>
+          <div class="audio-player" data-player>
+            <button class="ap-btn" type="button" aria-label="Play track">
+              <span class="ico ico-play"></span><span class="ico ico-pause"></span>
+            </button>
+            <div class="ap-main">
+              <div class="ap-track" data-track><div class="ap-fill" data-fill></div></div>
+              <div class="ap-time"><span data-current>0:00</span> / <span data-duration>0:00</span></div>
+            </div>
+            <div class="ap-volume">
+              <span class="ap-vol-icon" aria-hidden="true">🔊</span>
+              <input type="range" class="ap-vol-slider" data-volume min="0" max="100" value="60" aria-label="Volume">
+            </div>
+            <audio data-audio src="audio/cc-metallic-taste-tonal-riser.wav" preload="metadata"></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="credits">
+    <div class="tag">Credits</div>
+    <h2>Selected recent credits.</h2>
+    <p class="lede">A running list of freelance mixing, sound design, and session work.</p>
+
+    <div class="link-grid" style="margin-bottom:36px;">
+      <a class="link-card" href="https://filmfreeway.com/28KegsLater" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--pink);"></div>
+        <div class="lc-title">28 Kegs Later</div>
+        <div class="lc-sub">FilmFreeway project page</div>
+      </a>
+      <a class="link-card" href="https://www.youtube.com/watch?v=tqUkXOp8pVA" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--violet);"></div>
+        <div class="lc-title">Party Demon</div>
+        <div class="lc-sub">Horror comedy short film</div>
+      </a>
+      <a class="link-card" href="https://www.imdb.com/name/nm7685703/" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--gold);"></div>
+        <div class="lc-title">IMDb</div>
+        <div class="lc-sub">Filmography &amp; credits</div>
+      </a>
+    </div>
+
+    <div class="credit-block">
+      <h3>Recent Freelance Films Mixed</h3>
+      <div class="credit-note">Preston Tompkins (Edited By Preston)</div>
+      <div class="credit-list">
+        <div class="credit-item">
+          <div class="credit-year">2026</div>
+          <div>
+            <div class="credit-title">28 KEGS</div>
+            <div class="credit-role">Dialogue Editor / Post-Production Mixer</div>
+          </div>
+          <a class="credit-link" href="https://drive.google.com/file/d/1b5ER1R00IZSOxfFg-Qg5q0qZ-ECNh-nc/view?ts=6a9cb644" target="_blank" rel="noopener">Watch →</a>
+        </div>
+        <div class="credit-item">
+          <div class="credit-year">2025</div>
+          <div>
+            <div class="credit-title">Party Demon</div>
+            <div class="credit-role">Dialogue Editor / Post-Production Mixer</div>
+          </div>
+          <a class="credit-link" href="https://drive.google.com/file/d/1PGLo_tFe_8F5uY0AsqfMElP6QJNbynQ_/view?ts=6a9cb62f" target="_blank" rel="noopener">Watch →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="credit-block">
+      <h3>Sound Design</h3>
+      <div class="credit-list">
+        <div class="credit-item">
+          <div class="credit-year">2024–26</div>
+          <div>
+            <div class="credit-title">Composer Companion (Drew The Director)</div>
+            <div class="credit-role">Designed 77 original sound effects for the suite</div>
+          </div>
+          <a class="credit-link" href="https://www.composercompanion.com/" target="_blank" rel="noopener">Visit site →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="credit-block">
+      <h3>Colorado Sound Studios — Session Work</h3>
+      <div class="credit-list">
+        <div class="credit-item">
+          <div class="credit-year">2025</div>
+          <div>
+            <div class="credit-title">World Cafe: Pink Fuzz</div>
+            <div class="credit-role">Sound Recordist (set up, tore down)</div>
+          </div>
+          <a class="credit-link" href="https://www.youtube.com/watch?v=9CXoPgARWDI" target="_blank" rel="noopener">Watch →</a>
+        </div>
+        <div class="credit-item">
+          <div class="credit-year">2025</div>
+          <div>
+            <div class="credit-title">World Cafe: Nathaniel Rateliff</div>
+            <div class="credit-role">Sound Recordist (set up, tore down)</div>
+          </div>
+          <a class="credit-link" href="https://youtu.be/4mOW-Lk_lGg" target="_blank" rel="noopener">Watch →</a>
+        </div>
+        <div class="credit-item">
+          <div class="credit-year">2024</div>
+          <div>
+            <div class="credit-title">Laura's Little Choir</div>
+            <div class="credit-role">Production Assistant, Camera Operator (set up, tore down)</div>
+          </div>
+          <a class="credit-link" href="https://youtu.be/hWrwXVExvQM" target="_blank" rel="noopener">Watch →</a>
+        </div>
+        <div class="credit-item">
+          <div class="credit-year">2024</div>
+          <div>
+            <div class="credit-title">Jacob Larson Band</div>
+            <div class="credit-role">Set up, tore down</div>
+          </div>
+          <a class="credit-link" href="https://youtu.be/mHKxHnG51DA" target="_blank" rel="noopener">Watch →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="credit-block">
+      <h3>Audiobook</h3>
+      <div class="credit-list">
+        <div class="credit-item">
+          <div class="credit-year">2023</div>
+          <div>
+            <div class="credit-title">Love Is a Classroom</div>
+            <div class="credit-role">Audiobook</div>
+          </div>
+          <a class="credit-link" href="https://www.amazon.com/dp/B0CJHJRTJF?lv=shuf&amp;channelId=500&amp;plpRedirect=mhFallback" target="_blank" rel="noopener">Listen →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="archive">
+    <div class="tag">Archive</div>
+    <h2>The wider catalog.</h2>
+    <p class="lede">Older mixes, sessions, and film work outside the current Lead Reel.</p>
+    <div class="archive-panel">
+      <p>A deeper archive of earlier projects is being organized and will land here soon. In the meantime, reach out directly for older reels or references.</p>
+      <a class="btn btn-outline" href="#contact">Ask about older work</a>
+    </div>
+  </section>
+
+  <section class="block" id="music">
+    <div class="tag">Music</div>
+    <h2>Seanna — original music.</h2>
+    <p class="lede">Outside of engineering for other artists and productions, Ashell records and performs original music under the name <strong>Seanna</strong> — songwriting, production, and multi-instrumental work, out now on every platform.</p>
+
+    <div class="spotify-frame">
+      <iframe src="https://open.spotify.com/embed/artist/7roD4f7EePWSubrCn01DgY?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+
+    <div class="link-grid">
+      <a class="link-card" href="https://seanna.bandcamp.com/album/be-mine" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--green);"></div>
+        <div class="lc-title">Be Mine</div>
+        <div class="lc-sub">Album on Bandcamp</div>
+      </a>
+      <a class="link-card" href="http://music.apple.com/us/artist/seanna/1214174505" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--pink);"></div>
+        <div class="lc-title">Apple Music</div>
+        <div class="lc-sub">Full catalog</div>
+      </a>
+      <a class="link-card" href="https://soundcloud.com/seannaofficial" target="_blank" rel="noopener">
+        <div class="lc-dot" style="background:var(--blue);"></div>
+        <div class="lc-title">SoundCloud</div>
+        <div class="lc-sub">@seannaofficial</div>
+      </a>
+    </div>
+  </section>
+
   <section class="block" id="socials">
     <div class="tag">Socials</div>
     <h2>Follow along.</h2>
@@ -580,17 +967,18 @@
       <form id="contactForm">
         <div class="field">
           <label for="cf-name">Name</label>
-          <input id="cf-name" type="text" required placeholder="Your name">
+          <input id="cf-name" name="name" type="text" required placeholder="Your name">
         </div>
         <div class="field">
           <label for="cf-email">Email</label>
-          <input id="cf-email" type="email" required placeholder="you@email.com">
+          <input id="cf-email" name="email" type="email" required placeholder="you@email.com">
         </div>
         <div class="field">
           <label for="cf-message">Message</label>
-          <textarea id="cf-message" rows="4" required placeholder="Tell me about your project..."></textarea>
+          <textarea id="cf-message" name="message" rows="4" required placeholder="Tell me about your project..."></textarea>
         </div>
-        <button type="submit" class="btn btn-solid" style="border:none; cursor:pointer; width:100%; justify-content:center;">Send message</button>
+        <button type="submit" class="btn btn-solid" id="cf-submit" style="border:none; cursor:pointer; width:100%; justify-content:center;">Send message</button>
+        <p id="cf-status" role="status" aria-live="polite" style="margin-top:14px; font-size:13.5px;"></p>
       </form>
 
       <div class="contact-direct">
@@ -612,8 +1000,8 @@
   </section>
 
   <footer>
-    <div class="wordmark-sm">SEANNA</div>
-    <div class="foot-note">Ashell Fox — Denver, Colorado</div>
+    <div class="wordmark-sm">ASHELL FOX</div>
+    <div class="foot-note">Audio Engineer &amp; Producer — Denver, Colorado</div>
   </footer>
 
 </div>
@@ -637,17 +1025,160 @@
   }, {threshold:0.15});
   blocks.forEach(b => io.observe(b));
 
-  // Contact form -> mailto
+  // Contact form -> FormSubmit (static sites have no backend of their own,
+  // so this posts to FormSubmit's AJAX endpoint, which emails the result).
   const form = document.getElementById('contactForm');
+  const cfSubmit = document.getElementById('cf-submit');
+  const cfStatus = document.getElementById('cf-status');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('cf-name').value;
     const email = document.getElementById('cf-email').value;
     const message = document.getElementById('cf-message').value;
-    const subject = encodeURIComponent(`Inquiry from ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:hello@seannamusic.com?subject=${subject}&body=${body}`;
+
+    cfSubmit.disabled = true;
+    cfSubmit.textContent = 'Sending…';
+    cfStatus.textContent = '';
+
+    fetch('https://formsubmit.co/ajax/ashellfox@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+        _subject: `New inquiry from ${name}`,
+      }),
+    })
+      .then(res => { if(!res.ok) throw new Error('Request failed'); })
+      .then(() => {
+        cfStatus.textContent = 'Thanks — your message is on its way. I\'ll get back to you soon.';
+        cfStatus.style.color = 'var(--green)';
+        form.reset();
+      })
+      .catch(() => {
+        cfStatus.textContent = 'Something went wrong sending that. Please email me directly at foxarasta@gmail.com.';
+        cfStatus.style.color = 'var(--pink)';
+      })
+      .finally(() => {
+        cfSubmit.disabled = false;
+        cfSubmit.textContent = 'Send message';
+      });
   });
+
+  // Audio players — click-to-play with fade in/out, one track at a time
+  (function(){
+    const players = [];
+    const FADE_MS = 260;
+
+    function formatTime(s){
+      if(!isFinite(s) || s < 0) return '0:00';
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60).toString().padStart(2, '0');
+      return `${m}:${sec}`;
+    }
+
+    function fadeVolume(audio, from, to, duration, onDone){
+      if(audio._fadeRaf) cancelAnimationFrame(audio._fadeRaf);
+      const start = performance.now();
+      function step(now){
+        const t = Math.min(1, (now - start) / duration);
+        audio.volume = from + (to - from) * t;
+        if(t < 1){
+          audio._fadeRaf = requestAnimationFrame(step);
+        } else if(onDone){
+          onDone();
+        }
+      }
+      audio._fadeRaf = requestAnimationFrame(step);
+    }
+
+    // play()/pause() on <audio> are async and racy — calling pause() while a
+    // play() request is still pending throws, and toggling state before play()
+    // actually resolves leaves the button and the audio out of sync (the "click
+    // twice to hear anything" bug). Track the in-flight promise per entry and
+    // only touch playback/UI once it settles.
+    function playEntry(entry){
+      const { audio, btn } = entry;
+      btn.classList.add('is-playing');
+      audio.volume = 0;
+      const request = audio.play();
+      entry.pending = request;
+      Promise.resolve(request).then(() => {
+        if(entry.pending !== request) return; // superseded by a newer click
+        entry.pending = null;
+        fadeVolume(audio, 0, entry.targetVolume, FADE_MS);
+      }).catch(err => {
+        entry.pending = null;
+        btn.classList.remove('is-playing');
+        console.error('Playback failed:', err);
+      });
+    }
+
+    function stopEntry(entry){
+      const { audio, btn } = entry;
+      btn.classList.remove('is-playing');
+      const doFade = () => fadeVolume(audio, audio.volume, 0, FADE_MS, () => audio.pause());
+      if(entry.pending){
+        // wait for the pending play() to settle before pausing, or the
+        // browser throws "interrupted by a call to pause()" and the audio
+        // element is left in a stuck, unresponsive state.
+        Promise.resolve(entry.pending).then(doFade).catch(doFade);
+      } else {
+        doFade();
+      }
+    }
+
+    document.querySelectorAll('[data-player]').forEach(root => {
+      const audio = root.querySelector('[data-audio]');
+      const btn = root.querySelector('.ap-btn');
+      const track = root.querySelector('[data-track]');
+      const fill = root.querySelector('[data-fill]');
+      const curEl = root.querySelector('[data-current]');
+      const durEl = root.querySelector('[data-duration]');
+      const volSlider = root.querySelector('[data-volume]');
+      const entry = { audio, btn, pending: null, targetVolume: volSlider ? volSlider.value / 100 : 1 };
+      players.push(entry);
+
+      audio.volume = 0;
+
+      if(volSlider){
+        volSlider.addEventListener('input', () => {
+          entry.targetVolume = volSlider.value / 100;
+          if(!audio.paused && !entry.pending) audio.volume = entry.targetVolume;
+        });
+      }
+
+      audio.addEventListener('loadedmetadata', () => {
+        durEl.textContent = formatTime(audio.duration);
+      });
+      audio.addEventListener('timeupdate', () => {
+        if(audio.duration) fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+        curEl.textContent = formatTime(audio.currentTime);
+      });
+      audio.addEventListener('ended', () => {
+        btn.classList.remove('is-playing');
+        fill.style.width = '0%';
+        audio.currentTime = 0;
+      });
+
+      btn.addEventListener('click', () => {
+        if(audio.paused){
+          players.forEach(p => { if(p.audio !== audio && !p.audio.paused) stopEntry(p); });
+          playEntry(entry);
+        } else {
+          stopEntry(entry);
+        }
+      });
+
+      track.addEventListener('click', (e) => {
+        if(!audio.duration) return;
+        const rect = track.getBoundingClientRect();
+        const ratio = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+        audio.currentTime = ratio * audio.duration;
+      });
+    });
+  })();
 </script>
 
 </body>
