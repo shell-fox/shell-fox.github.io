@@ -341,8 +341,20 @@
   .reel-pair-head p{color:var(--muted); font-size:14px; margin-bottom:18px;}
   .reel-pair-players{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
   @media(max-width:640px){ .reel-pair-players{grid-template-columns:1fr;} }
-  .reel-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px;}
-  .oneshot-card h4{font-size:15.5px; font-weight:700; margin-bottom:14px;}
+  .reel-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:14px;
+  }
+  @media(max-width:860px){ .reel-grid{grid-template-columns:repeat(2, 1fr);} }
+  @media(max-width:480px){ .reel-grid{grid-template-columns:1fr;} }
+  .oneshot-card{display:flex; flex-direction:column; padding:20px;}
+  .oneshot-card h4{font-size:15px; font-weight:700; margin-bottom:2px;}
+  .oneshot-sub{font-size:12.5px; color:var(--muted); margin-bottom:18px;}
+  .oneshot-card .audio-player{margin-top:auto; flex-wrap:wrap; row-gap:10px;}
+  .oneshot-card .ap-main{flex:1 1 100%;}
+  .oneshot-card .ap-volume{flex:1 1 100%;}
+  .oneshot-card .ap-vol-slider{flex:1; width:auto;}
 
   .audio-player{
     display:flex; align-items:center; gap:12px;
@@ -503,7 +515,6 @@
       <a href="#reel">Lead Reel</a>
       <a href="#credits">Credits</a>
       <a href="#music">Music</a>
-      <a href="#contact">Contact</a>
     </nav>
     <a class="nav-cta" href="#contact">Get in touch</a>
   </div>
@@ -714,7 +725,8 @@
       <p class="lede" style="margin-bottom:18px;">Four of 77 original sound effects designed for Drew The Director's Composer Companion suite.</p>
       <div class="reel-grid">
         <div class="reel-pair-card oneshot-card">
-          <h4>Decimate <span style="color:var(--muted); font-weight:500;">— Tonal Riser [D]</span></h4>
+          <h4>Decimate</h4>
+          <div class="oneshot-sub">Tonal Riser [D]</div>
           <div class="audio-player" data-player>
             <button class="ap-btn" type="button" aria-label="Play track">
               <span class="ico ico-play"></span><span class="ico ico-pause"></span>
@@ -731,7 +743,8 @@
           </div>
         </div>
         <div class="reel-pair-card oneshot-card">
-          <h4>Deep End <span style="color:var(--muted); font-weight:500;">— Bass Drop [F]</span></h4>
+          <h4>Deep End</h4>
+          <div class="oneshot-sub">Bass Drop [F]</div>
           <div class="audio-player" data-player>
             <button class="ap-btn" type="button" aria-label="Play track">
               <span class="ico ico-play"></span><span class="ico ico-pause"></span>
@@ -748,7 +761,8 @@
           </div>
         </div>
         <div class="reel-pair-card oneshot-card">
-          <h4>Epic Metal Bend <span style="color:var(--muted); font-weight:500;">— Tonal Hit [Dm]</span></h4>
+          <h4>Epic Metal Bend</h4>
+          <div class="oneshot-sub">Tonal Hit [Dm]</div>
           <div class="audio-player" data-player>
             <button class="ap-btn" type="button" aria-label="Play track">
               <span class="ico ico-play"></span><span class="ico ico-pause"></span>
@@ -765,7 +779,8 @@
           </div>
         </div>
         <div class="reel-pair-card oneshot-card">
-          <h4>Metallic Taste <span style="color:var(--muted); font-weight:500;">— Tonal Riser [Em]</span></h4>
+          <h4>Metallic Taste</h4>
+          <div class="oneshot-sub">Tonal Riser [Em]</div>
           <div class="audio-player" data-player>
             <button class="ap-btn" type="button" aria-label="Play track">
               <span class="ico ico-play"></span><span class="ico ico-pause"></span>
